@@ -207,6 +207,12 @@ public abstract class AbstractPropertyResolver implements ConfigurablePropertyRe
 		if (this.strictHelper == null) {
 			this.strictHelper = createPlaceholderHelper(false);
 		}
+		/**
+		 * 1.3 解析对应的path的占位符
+		 * 例如 ： System.setProperty("spring", "classpath");
+		 * ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("${spring}:bean/BeanFactoryTest.xml");
+		 * 把${spring} 替换为classpath
+		 */
 		return doResolvePlaceholders(text, this.strictHelper);
 	}
 

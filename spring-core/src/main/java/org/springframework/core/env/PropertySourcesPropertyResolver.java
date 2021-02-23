@@ -74,6 +74,14 @@ public class PropertySourcesPropertyResolver extends AbstractPropertyResolver {
 		return getProperty(key, String.class, false);
 	}
 
+	/**
+	 *
+	 * @param key
+	 * @param targetValueType
+	 * @param resolveNestedPlaceholders
+	 * @param <T>
+	 * @return 真正从propertySource集合里面拿对应的key的valve真正从propertySource集合里面拿对应的key的valve，propertySource为系统变量
+	 */
 	@Nullable
 	protected <T> T getProperty(String key, Class<T> targetValueType, boolean resolveNestedPlaceholders) {
 		if (this.propertySources != null) {
