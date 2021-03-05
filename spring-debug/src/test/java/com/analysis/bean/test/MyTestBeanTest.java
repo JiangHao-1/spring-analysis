@@ -1,7 +1,10 @@
 package com.analysis.bean.test;
 
+import com.analysis.bean.test.entity.MyTestBean;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

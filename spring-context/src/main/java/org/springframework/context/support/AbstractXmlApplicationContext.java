@@ -80,6 +80,7 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	@Override
 	protected void loadBeanDefinitions(DefaultListableBeanFactory beanFactory) throws BeansException, IOException {
 		// Create a new XmlBeanDefinitionReader for the given BeanFactory.
+		//创建beanDefinitionReader
 		XmlBeanDefinitionReader beanDefinitionReader = new XmlBeanDefinitionReader(beanFactory);
 
 		// Configure the bean definition reader with this context's
@@ -90,7 +91,9 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 
 		// Allow a subclass to provide custom initialization of the reader,
 		// then proceed with actually loading the bean definitions.
+		//校验格式是否为xml
 		initBeanDefinitionReader(beanDefinitionReader);
+		//todo ： 下面方法是核心 Bean读取器真正实现的地方 加载beanDefinition并存在map和names中
 		loadBeanDefinitions(beanDefinitionReader);
 	}
 
@@ -119,12 +122,15 @@ public abstract class AbstractXmlApplicationContext extends AbstractRefreshableC
 	 * @see #getResourcePatternResolver
 	 */
 	protected void loadBeanDefinitions(XmlBeanDefinitionReader reader) throws BeansException, IOException {
+		//获取Bean定义资源的定位
 		Resource[] configResources = getConfigResources();
 		if (configResources != null) {
 			reader.loadBeanDefinitions(configResources);
 		}
+		//获取Bean定义资源的路径 此前在ClassPathXmlApplicationContext的构造方法已经中已经通过setConfigLocations方法解析了对应的路径并存在了configLocations数组中
 		String[] configLocations = getConfigLocations();
 		if (configLocations != null) {
+			//传入路径数组 循环解析对应的资源文件
 			reader.loadBeanDefinitions(configLocations);
 		}
 	}

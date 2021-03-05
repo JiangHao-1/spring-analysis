@@ -1,4 +1,4 @@
-package com.analysis.bean.test;
+package com.analysis.bean.test.entity;
 
 public class MyTestBean {
 
